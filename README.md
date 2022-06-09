@@ -1,5 +1,8 @@
 # DARKO
+UoL contribution to WP5 of EU H2020 Darko:
 
-Lincoln contributes first to the WP in relation to context-aware Human-Robot Spatial Interactions in the H2020 Darko project.
+Tasks: 
 
-Second, Lincoln contributes to WP in relation to causal modeling and inference on the observational data extracted in the context of Human-Robot Interactions 
+Context-aware Human-Robot Spatial Interactions 
+
+Causal Modeling and Inference on the observational data extracted within the context of Human-Robot Interactions 
