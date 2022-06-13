@@ -10,17 +10,18 @@ import os, rospkg
 import shutil # module to make operations on files
 import time
 
-from pathlib import Path
+#from pathlib import Path
 import numpy as np
 
 import matplotlib.pyplot as plt
 
-from sklearn import preprocessing
+#from sklearn import preprocessing
 from std_msgs.msg import String,Int32,Int32MultiArray,MultiArrayLayout,MultiArrayDimension
 
 from darko_prediction_msgs.msg import HumansPredictions, HumanMultiModalPredictions, HumanPrediction
 from darko_interactions_msgs.msg import Interactions, scene_interactions
 from darko_perception_msgs.msg import Humans, Human
+from geometry_msgs.msg import PoseWithCovariance
 
 
 
@@ -58,6 +59,7 @@ class motion_pub:
 		human_multim_pred = HumanMultiModalPredictions()
 		humans_pred = HumansPredictions()
 		humans_pose = Humans()
+		h_pose = PoseWithCovariance()
 
 
 
@@ -67,19 +69,24 @@ class motion_pub:
 				human_pred = HumanPrediction()
 				human_pred.id = h
 				human_pred.header.stamp = rospy.Time.now()
-				human_pred.sample.pose.position.x = self.random_data(low = 0, high = 10)
-				human_pred.sample.pose.position.y = self.random_data(low = 0, high = 10)
-				human_pred.sample.pose.position.z = self.random_data(low = 0.8, high = 1.1)
-				human_multim_pred.prediction.append(human_pred)
 
+				for t in range(self.time_horizon):
 
-				human_pose = Human()
-				human_pose.id = h
-				human_pose.centroid.pose.position.x = self.random_data(low = 0, high = 10)
-				human_pose.centroid.pose.position.y = self.random_data(low = 0, high = 10)
-				human_pose.centroid.pose.position.z = self.random_data(low = 0.8, high = 1.1)
-			
-				humans_pose.humans.append(human_pose)
+					h_pose.pose.position.x = self.random_data(low = 0, high = 10)
+					h_pose.pose.position.y = self.random_data(low = 0, high = 10)
+					h_pose.pose.position.z = self.random_data(low = 0.8, high = 1.1)
+					human_pred.sample.append(h_pose) # over trajectory for 1 human and 1 sample
+
+					human_multim_pred.prediction.append(human_pred)
+
+					human_pose = Human()
+					human_pose.id = h
+					human_pose.centroid.pose.position.x = self.random_data(low = 0, high = 10)
+					human_pose.centroid.pose.position.y = self.random_data(low = 0, high = 10)
+					human_pose.centroid.pose.position.z = self.random_data(low = 0.8, high = 1.1)
+				
+					humans_pose.humans.append(human_pose)
+
 
 			humans_pred.predictions.append(human_multim_pred)
 			print("human multi modal pred = ", len(humans_pred.predictions))
