@@ -1,7 +1,7 @@
-# DARKO
-UoL contribution to WP5 of EU H2020 Darko:
+## DARKO
+L-CAS/UoL contribution to work package 5 of the EU H2020 project Darko (https://darko-project.eu/):
 
-Tasks: 
+Tasks addressed: 
 
 Context-aware Human-Robot Spatial Interactions 
 
