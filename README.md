@@ -1,5 +1,5 @@
 ## DARKO
-L-CAS/UoL contribution to work package 5 of the EU H2020 project Darko (https://darko-project.eu/):
+L-CAS/UoL initial contribution to work package 5 of the EU H2020 project Darko (https://darko-project.eu/):
 
 Tasks addressed: 
 
